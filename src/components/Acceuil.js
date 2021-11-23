@@ -80,11 +80,9 @@ export default function Acceuil() {
       "nombre des livre est",
       store.getState().livre
     );
-
-    alert(titre, Auter);
   };
   return (
-    <form className="flex  text-center justify-center bg-gray-200 items-center flex-col">
+    <form  className="flex  text-center justify-center bg-gray-200 items-center flex-col">
       <p className=" py-8"> Ajouter un livre à votre bibliothèque</p>
       <div className="flex justify-between ">
         <input
@@ -108,7 +106,7 @@ export default function Acceuil() {
       </div>
       <input
         className="bg-gray-500 text-white cursor-pointer text-bold text-lg   m-4 p-3"
-        type="submit"
+        type="button"
         value="Ajouter un livre"
         onClick={() => onclick()}
       />
