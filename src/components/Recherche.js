@@ -38,9 +38,9 @@ function Recherche() {
         />
         <input
           className="bg-gray-500 text-white cursor-pointer text-bold text-lg    mx-4 p-2 h-10"
-          type="submit"
+          type="button"
           value="Rechercher"
-          onClick={handleSubmit}
+          onClick={() => handleSubmit()}
         />
       </div>
       <div className="grid grid-cols-4 justify-start text-left">
@@ -51,6 +51,7 @@ function Recherche() {
               title={item.volumeInfo.title}
               pageCount={item.volumeInfo.pageCount}
               language={item.volumeInfo.language}
+              Auter={item.volumeInfo.authors}
             />
           );
         })}

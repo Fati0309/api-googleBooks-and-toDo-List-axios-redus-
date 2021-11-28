@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import store from "../store";
 import { AjouterLivre, SuppLivre } from "./redux/livre/action";
 import React from "react";
 
-// import { useListe } from "./myContext";
-// const { liste, setliste } = useListe();
-// console.log("list: ", liste);
+import { useListe } from "./myContext";
 
 export default function Acceuil() {
   const [titre, setTitre] = useState("");
   const [Auter, setAuter] = useState("");
+  const { liste, toggle } = useListe();
+
 
   const onChangeTitre = (e) => {
     setTitre(e.target.value);
@@ -49,40 +49,36 @@ export default function Acceuil() {
     );
   };
 
-  const [list, setlist] = useState([]);
-
   const handleSubmit = (e) => {
     if (titre === "") {
       alert("ecrire votre etape");
     } else {
-      let x = list;
+      let x = liste;
       console.log(Auter);
-      setlist([...x, { titre, Auter }]);
-      // dispatch(AjouterLivre());
+      toggle([...x, { titre, Auter }]);
+      dispatch(AjouterLivre());
     }
   };
+
   const supItems = () => {
-    let x = list;
+    let x = liste;
     x.splice(x.indexOf(titre), 1);
-    setlist([...x]);
-    console.log(list);
+    toggle([...x]);
+    console.log(liste);
     dispatch(SuppLivre());
     console.log("nombre des livre est", store.getState().livre);
   };
-  console.log(list);
+  console.log(liste);
   const dispatch = useDispatch();
 
   const onclick = (e) => {
     handleSubmit();
     setTitre("");
     setAuter("");
-    console.log(
-      "nombre des livre est",
-      store.getState().livre
-    );
+    console.log("nombre des livre est", store.getState().livre);
   };
   return (
-    <form  className="flex  text-center justify-center bg-gray-200 items-center flex-col">
+    <form className="flex  text-center justify-center bg-gray-200 items-center flex-col">
       <p className=" py-8"> Ajouter un livre à votre bibliothèque</p>
       <div className="flex justify-between ">
         <input
@@ -111,7 +107,7 @@ export default function Acceuil() {
         onClick={() => onclick()}
       />
       <div id="footer" className="bg-gray-100 text center w-full  ">
-        {list.map((item) => {
+        {liste.map((item) => {
           return <Item titre={item.titre} auteur={item.Auter} />;
         })}
       </div>

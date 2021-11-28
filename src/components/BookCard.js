@@ -1,34 +1,35 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { AjouterLivre } from "./redux/livre/action";
-const BookCard = ({ src, title, pageCount, language }) => {
+import { useListe } from "./myContext";
+const BookCard = ({ src, title, pageCount, language ,Auter}) => {
   const dispatch = useDispatch();
+  const { liste, toggle} = useListe();
   const ajouterItems = () => {
-    // dispatch()
     dispatch(AjouterLivre());
+    toggle([...liste, { title, Auter }]);
   };
   return (
     <div className="flex flex-col p-4 border rounded-lg ">
       <img src={src} />
       <div>
         <div>
-          {" "}
           <span className="text-semibold">title :</span> {title}
         </div>
         <div>
-          {" "}
+          <span className="text-semibold">Auter :</span> {Auter}
+        </div>
+        <div>
           <span className="text-semibold">Page Count: </span>
           {pageCount}
         </div>
         <div>
-          {" "}
           <span className="text-semibold">language : </span> {language}{" "}
         </div>
         <div
           className="flex justify-center align-center"
-          onClick={ajouterItems()}
+          onClick={()=>ajouterItems()}
         >
-          {" "}
           <svg
             class="w-6 h-6"
             fill="none"

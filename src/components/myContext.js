@@ -6,10 +6,14 @@ const ListContext = React.createContext();
 //provider
 export function ListProvider({ children }) {
   //variable globale
-  const [liste, setliste] = useState(["one", "two"]);
+  const [liste, setliste] = useState([]);
+
+  function toggle(props) {
+    setliste(props);
+  }
+
   return (
-    <ListContext.Provider value={{ liste, setliste }}>
-      {" "}
+    <ListContext.Provider value={{ liste, toggle }}>
       {children}
     </ListContext.Provider>
   );

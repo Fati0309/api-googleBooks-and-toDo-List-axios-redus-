@@ -3,11 +3,11 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Acceuil from "./components/Acceuil";
 import Recherche from "./components/Recherche";
-// import { ListProvider } from "./components/myContext";
+import { ListProvider } from "./components/myContext";
 
 export default function App() {
   return (
-    // <ListProvider>
+    <ListProvider>
     <Router>
       <div className="App">
         <div className="bg-gray-500  p-4 flex flex-col justify-center ">
@@ -33,6 +33,6 @@ export default function App() {
         </Routes>
       </div>
     </Router>
-    // </ListProvider>
+    </ListProvider>
   );
 }
